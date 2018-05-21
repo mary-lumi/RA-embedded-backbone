@@ -40,16 +40,7 @@ typedef struct {
 
 //############################ peripheral enable definitions ############################
 
-<<<<<<< HEAD
-#define PCC_PORTC_INDEX                          75
-#define PCC_PORTD_INDEX                          76
 
-/** PCC - Size of Registers Arrays */
-#define PCC_PCCn_COUNT                           116u// 121 last register is at offset 0x1e4
-
-/** PCC - Register Layout Typedef */
-=======
->>>>>>> upstream/master
 typedef struct {
 	uint8_t RESERVED_0[128];
 	uint32_t FTFC;
@@ -117,11 +108,9 @@ typedef struct {
 /** Peripheral PCC base pointer */
 #define PCC                                      ((PCC_Type *)PCC_BASE)
 
-<<<<<<< HEAD
-#define PCC_PCCn_CGC_MASK                        0x40000000u//1<<30
-=======
+
 #define PCC_PCCn_CGC_MASK                        (1<<30)
->>>>>>> upstream/master
+
 
 //############################ GPIO(general purpose input/output) enable definitions ############################
 
@@ -152,20 +141,11 @@ typedef struct {
 /** Peripheral PTC base address */
 #define GPIOC_BASE                                 (0x400FF080u)
 /** Peripheral PTC base pointer */
-<<<<<<< HEAD
-#define GPIOC                                      ((GPIO_Type *)GPIOC_BASE)
-=======
-#define GPIOC                                    ((GPIO_Type *)GPIOC_BASE)
 
-
->>>>>>> upstream/master
 /** Peripheral PTD base address */
 #define GPIOD_BASE                                 (0x400FF0C0u)
 /** Peripheral PTD base pointer */
 #define GPIOD                                      ((GPIO_Type *)GPIOD_BASE)
-<<<<<<< HEAD
-=======
-
 
 /** Peripheral PTE base address */
 #define GPIOE_BASE                                 (0x400FF100u)
@@ -202,7 +182,7 @@ typedef struct {
 #define GPIO_Pin_17                17  /*!< Pin 17 selected */
 
 
->>>>>>> upstream/master
+
 
 /** PORT - Size of Registers Arrays */
 #define PORT_PCR_COUNT                           32u

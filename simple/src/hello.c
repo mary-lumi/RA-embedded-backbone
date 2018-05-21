@@ -9,18 +9,17 @@
 
 #include "S32K144_small.h"    /* include peripheral declarations S32K144 */
 
-<<<<<<< HEAD
 #define LED_BLUE  0  /* Port PTD0, bit 0: FRDM EVB output to blue LED */
 #define LED_RED 15
 #define BUTTON_PIN 12        /* Port PTC12, bit 12: FRDM EVB input from BTN0 [SW2] */
-=======
+
 #define LED_BLUE	GPIO_Pin_0         /* Port PTD0, bit 0: FRDM EVB output to blue LED */
 #define LED_RED		GPIO_Pin_15
 #define LED_GREEN	GPIO_Pin_16
 
 #define BTN_0		GPIO_Pin_12        /* Port PTC12, bit 12: FRDM EVB input from BTN0 [SW2] */
 #define BTN_1		GPIO_Pin_13
->>>>>>> upstream/master
+
 
 void WDOG_disable (void)
 {
@@ -49,7 +48,7 @@ int main(void)
 
   WDOG_disable();             /* Disable Watchdog in case it is not done in startup code */
                               /* Enable clocks to peripherals (PORT modules) */
-<<<<<<< HEAD
+
   PCC-> PCCn[PCC_PORTC_INDEX] = PCC_PCCn_CGC_MASK; /* Enable clock to PORT C */
   PCC-> PCCn[PCC_PORTD_INDEX] = PCC_PCCn_CGC_MASK; /* Enable clock to PORT D */
                                /* Configure port C12 as GPIO input (BTN 0 [SW2] on EVB) */
@@ -70,7 +69,7 @@ int main(void)
     else {                          /* If BTN0 was not pushed */
       GPIOD-> PCOR |= 1<<LED_RED;
       GPIOD-> PSOR |= 1<<LED_BLUE;        /* Set Output on port D0 (LED off) */
-=======
+
 
   //Clock Configuration
 
@@ -114,7 +113,7 @@ int main(void)
     }
     else {
       GPIOD-> PSOR |= (1<<LED_BLUE) | (1<<LED_RED) | (1<<LED_GREEN);
->>>>>>> upstream/master
+
     }
   }
 }

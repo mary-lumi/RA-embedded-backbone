@@ -1,17 +1,4 @@
-/*
- * hello.c              Copyright NXP 2016
- * Description:  Simple program to exercise GPIO
- * 2015 Mar 31 S Mihalik/ O Romero - initial version
- *
- */
-
-/*Modified 09.05.2018 by ADiea for simplification of code base*/
-
 #include "S32K144_small.h"    /* include peripheral declarations S32K144 */
-
-#define LED_BLUE  0  /* Port PTD0, bit 0: FRDM EVB output to blue LED */
-#define LED_RED 15
-#define BUTTON_PIN 12        /* Port PTC12, bit 12: FRDM EVB input from BTN0 [SW2] */
 
 #define LED_BLUE	GPIO_Pin_0         /* Port PTD0, bit 0: FRDM EVB output to blue LED */
 #define LED_RED		GPIO_Pin_15
@@ -19,7 +6,6 @@
 
 #define BTN_0		GPIO_Pin_12        /* Port PTC12, bit 12: FRDM EVB input from BTN0 [SW2] */
 #define BTN_1		GPIO_Pin_13
-
 
 void WDOG_disable (void)
 {
@@ -48,28 +34,6 @@ int main(void)
 
   WDOG_disable();             /* Disable Watchdog in case it is not done in startup code */
                               /* Enable clocks to peripherals (PORT modules) */
-
-  PCC-> PCCn[PCC_PORTC_INDEX] = PCC_PCCn_CGC_MASK; /* Enable clock to PORT C */
-  PCC-> PCCn[PCC_PORTD_INDEX] = PCC_PCCn_CGC_MASK; /* Enable clock to PORT D */
-                               /* Configure port C12 as GPIO input (BTN 0 [SW2] on EVB) */
-
-  GPIOC->PDDR &= ~(1<<BUTTON_PIN);    /* Port C12: Data Direction= input (default) */
-  PORTC->PCR[BUTTON_PIN] = 0x00000110; /* Port C12: MUX = GPIO, input filter enabled */
-                               /* Configure port D0 as GPIO output (LED on EVB) */
-  GPIOD->PDDR |= 1<<LED_BLUE;        /* Port D0: Data Direction= output */
-  PORTD->PCR[0] = 0x00000100;  /* Port D0: MUX = GPIO */
-  GPIOD->PDDR |= 1<<LED_RED;
-  PORTD->PCR[15] = 0x00000100;
-
-  for(;;) {
-    if (GPIOC->PDIR & (1<<BUTTON_PIN)) {   /* If Pad Data Input = 1 (BTN0 [SW2] pushed) */
-      GPIOD-> PCOR |= 1<<LED_BLUE; /* Clear Output on port D0 (LED on) */
-      GPIOD-> PSOR |= 1<<LED_RED;
-    }
-    else {                          /* If BTN0 was not pushed */
-      GPIOD-> PCOR |= 1<<LED_RED;
-      GPIOD-> PSOR |= 1<<LED_BLUE;        /* Set Output on port D0 (LED off) */
-
 
   //Clock Configuration
 
@@ -113,7 +77,6 @@ int main(void)
     }
     else {
       GPIOD-> PSOR |= (1<<LED_BLUE) | (1<<LED_RED) | (1<<LED_GREEN);
-
     }
   }
 }

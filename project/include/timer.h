@@ -7,7 +7,8 @@
 
 #ifndef TIMER_H_
 #define TIMER_H_
-#include "S32K144_small.h"
+
+#include "system.h"
 
 // There are 4 FTM, each having 8 channels
 
@@ -73,8 +74,8 @@ typedef struct {
 
 }FTM_Type, *FTM_MemMapPtr;
 
-#define TIMER_CH_SC(timer, channel) (&((timer)->C0SC) + (channel)*2*sizeof(uint32_t))
-#define TIMER_CH_V(timer, channel) (&((timer)->C0V) + (channel)*2*sizeof(uint32_t))
+#define TIMER_CH_SC(timer, channel) (&((timer)->C0SC) + (channel)*2)
+#define TIMER_CH_V(timer, channel) (&((timer)->C0V) + (channel)*2)
 
 /* FTM - Timer instance base addresses */
 /** Peripheral FTM0 base address **/
@@ -117,8 +118,6 @@ typedef struct {
 #define CxSC_MSB 5
 #define CxSC_ELSA 2
 
-
-
 typedef enum {
 	eFTM_CH0 = 0,
 	eFTM_CH1,
@@ -129,7 +128,6 @@ typedef enum {
 	eFTM_CH6,
 	eFTM_CH7
 }eFTMChannel;
-
 
 // Write protection pin modes in MODE register
 typedef enum {
